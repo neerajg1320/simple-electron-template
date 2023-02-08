@@ -257,3 +257,17 @@ Development mode
   },
 
 # TBD: We will build custom targets which combine the two using on-wait and concurrently
+
+# Our final scripts block looks like this:
+  "scripts": {
+    "dev-server": "webpack serve --mode development --config ./webpack.config.dev.js",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "preprod": "webpack --mode production --config ./webpack.config.prod.js",
+    "prod": "cross-env NODE_ENV=production electron .",
+    "postinstall": "electron-builder -m install-app-deps",
+    "pack": "electron-builder -m --dir",
+    "dist": "npm run dist-mac",
+    "dist-mac": "npm run preprod && electron-builder --mac",
+    "dist-linux": "npm run preprod && electron-builder --linux",
+    "dist-windows": "npm run preprod && electron-builder --windows"
+  },
