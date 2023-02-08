@@ -1,0 +1,10 @@
+npm i electron --save-dev
+touch .gitignore
+mdkir app
+mkdir app
+mkdir dist
+mkdir docs
+mkdir app/electron
+mkdir app/src
+
+touch app/electron/main.js
