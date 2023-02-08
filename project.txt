@@ -142,5 +142,9 @@ function createWindow() {
 git branch js
 git checkout js
 
+## Add CSS to the project:
+# We need to add loader for CSS
+npm i style-loader css-loader --save-dev
 
-
+# The css loader loads CSS files
+# The style-loader injects those styles into html
