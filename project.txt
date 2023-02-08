@@ -148,3 +148,58 @@ npm i style-loader css-loader --save-dev
 
 # The css loader loads CSS files
 # The style-loader injects those styles into html
+
+## We will add support for webpack-dev-server
+# Enters webpack-dev-server
+npm i webpack-dev-server --save-dev
+
+# Now we will just add the devServer property to webpack.config.js
+module.exports = {
+:
+  devServer: {
+    host: "localhost",
+    port: "40992"
+  },
+  module: {
+:
+
+# Now we will need two terminal windows
+Terminal 1: Run electron app
+Terminal 2: Run webpack server
+
+# We will update the mode to development in webpack.config.js
+mode: "development",
+
+# We have to make a change in main.js if we are using webpack development server
+# We have to use loadURL as our bundled assets are being hosted by webpack at http://localhost:40992/
+
+So we have to use
+T1:
+npx webpack server
+
+T2:
+npx electron .
+
+The live compilation happen.
+We have to use Cmd+R to reload in electron
+
+## Multiple Webpack Configurations
+npm i webpack-merge --save-dev
+
+$ vi webpack.config.dev.js
+const {
+    merge
+} = require("webpack-merge");
+const base = require("./webpack.config.js");
+
+module.exports = merge(base, {
+    mode: "development",
+    devServer: {
+        host: "localhost",
+        port: "40992"
+    }
+});
+
+# Now we can remove the mode and devServer property from webpack.config.js
+# So now with npx webpack serve will be used with webpack.config.dev.js
+npx webpack serve --config webpack.config.dev.js
