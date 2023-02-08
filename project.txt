@@ -1,4 +1,5 @@
 # https://www.debugandrelease.com/creating-a-simple-electron-application/
+# https://www.debugandrelease.com/author/rezach/
 
 npm i electron --save-dev
 touch .gitignore
