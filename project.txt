@@ -271,3 +271,6 @@ Development mode
     "dist-linux": "npm run preprod && electron-builder --linux",
     "dist-windows": "npm run preprod && electron-builder --windows"
   },
+
+We can take a look at
+https://www.debugandrelease.com/creating-a-simple-electron-application/
