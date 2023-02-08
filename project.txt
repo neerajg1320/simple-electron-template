@@ -203,3 +203,5 @@ module.exports = merge(base, {
 # Now we can remove the mode and devServer property from webpack.config.js
 # So now with npx webpack serve will be used with webpack.config.dev.js
 npx webpack serve --config webpack.config.dev.js
+
+## Now we 
