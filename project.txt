@@ -81,3 +81,46 @@ webpack 5.75.0 compiled successfully in 429 ms
 simple-electron-template/ $
 
 # Our first handwritten webpack config for a react application is working !!
+
+# We need webpack loader for html files
+npm i html-loader --save-dev
+
+# Now we will add a rule to process html file
+# After this we need a plugin which will put a statment to inject our javascript into this file.
+npm i html-webpack-plugin --save-dev
+
+simple-electron-template/ $ npm run dev
+
+> SimpleTemplate@1.0.0 dev
+> webpack --mode development --config webpack.config.js
+
+asset bundle.js 1.12 MiB [compared for emit] (name: main)
+asset index.html 191 bytes [emitted]
+runtime modules 1.04 KiB 5 modules
+modules by path ./node_modules/ 1.08 MiB
+modules by path ./node_modules/react-dom/ 1000 KiB
+    ./node_modules/react-dom/client.js 619 bytes [built] [code generated]
+./node_modules/react-dom/index.js 1.33 KiB [built] [code generated]
+./node_modules/react-dom/cjs/react-dom.development.js 1000 KiB [built] [code generated]
+modules by path ./node_modules/react/ 85.7 KiB
+    ./node_modules/react/index.js 190 bytes [built] [code generated]
+./node_modules/react/cjs/react.development.js 85.5 KiB [built] [code generated]
+modules by path ./node_modules/scheduler/ 17.3 KiB
+    ./node_modules/scheduler/index.js 198 bytes [built] [code generated]
+./node_modules/scheduler/cjs/scheduler.development.js 17.1 KiB [built] [code generated]
+./app/src/index.jsx 243 bytes [built] [code generated]
+webpack 5.75.0 compiled successfully in 453 ms
+simple-electron-template/ $
+
+$ cat dist/index.html
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <title>My app</title>
+    <meta charset="utf-8" />
+<script defer src="bundle.js"></script></head>
+<body>
+<div>Hello world</div>
+</body>
+</html>
+

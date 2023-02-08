@@ -18,6 +18,8 @@
   "devDependencies": {
     "babel-loader": "^9.1.2",
     "electron": "^23.0.0",
+    "html-loader": "^4.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "webpack": "^5.75.0",
