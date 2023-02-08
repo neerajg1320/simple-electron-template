@@ -3,6 +3,8 @@ const {
   BrowserWindow
 } = require("electron");
 
+const isDevelopment = process.env.NODE_ENV === "development";
+
 function createWindow() {
   // Create a new window
   const window = new BrowserWindow({
@@ -17,10 +19,14 @@ function createWindow() {
     window.focus();
   });
 
-  // Load our HTML file
-  // window.loadFile("index.html");
-  // window.loadFile("app/dist/index.html");
-  window.loadURL("http://localhost:40992/");
+
+  if (isDevelopment) {
+    console.log('Development mode');
+    window.loadURL("http://localhost:40992/");
+  } else {
+    console.log('Production mode');
+    window.loadFile("app/dist/index.html");
+  }
 }
 
 // This method is called when Electron

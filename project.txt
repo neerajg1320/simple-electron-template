@@ -204,4 +204,46 @@ module.exports = merge(base, {
 # So now with npx webpack serve will be used with webpack.config.dev.js
 npx webpack serve --config webpack.config.dev.js
 
-## Now we 
+## Now we will create webpack.config.prod.js
+# Also we will use environment variable in main.js to decide whether we are using URL (development mode) or we are using file (production mode).
+# We will use cross-env package to define environment variables
+npm i cross-env --save-dev.
+We will use NODE_ENV as the variable name.
+# We will make the change in main.js
+const {
+  app,
+  BrowserWindow
+} = require("electron");
+
+const isDevelopment = process.env.NODE_ENV === "development";
+
+So for two modes we have following commands:
+production mode:
+npx webpack --config ./webpack.config.prod.js
+
+development mode:
+npx webpack --config ./webpack.config.dev.js
+
+simple-electron-template/ $
+simple-electron-template/ $ npm i cross-env --save-dev.
+
+
+const isDevelopment = process.env.NODE_ENV === "development";
+
+function createWindow() {
+:
+  if (isDevelopment) {
+    console.log('Development mode');
+    window.loadURL("http://localhost:40992/");
+  } else {
+    console.log('Production mode');
+    window.loadFile("app/dist/index.html");
+  }
+}
+
+simple-electron-template/ $ npx cross-env NODE_ENV=production electron .
+Production mode
+simple-electron-template/ $ npx cross-env NODE_ENV=development electron .
+Development mode
+
+# Our two modes are working !!
