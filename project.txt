@@ -112,6 +112,9 @@ modules by path ./node_modules/scheduler/ 17.3 KiB
 webpack 5.75.0 compiled successfully in 453 ms
 simple-electron-template/ $
 
+# We can see that the line to add script has been injected into our index.html
+<script defer src="bundle.js"></script></head>
+
 $ cat dist/index.html
 <!DOCTYPE html>
 <html lang="en-US">
@@ -123,4 +126,17 @@ $ cat dist/index.html
 <div>Hello world</div>
 </body>
 </html>
+
+# Now we will load the generated file instead of our index.html template file
+
+$ cat app/electron/main.js
+
+function createWindow() {
+:
+  // Load our HTML file
+  // window.loadFile("index.html");
+  window.loadFile("app/dist/index.html");
+}
+
+
 
