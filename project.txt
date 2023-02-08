@@ -138,5 +138,9 @@ function createWindow() {
   window.loadFile("app/dist/index.html");
 }
 
+# branch: Created branch for just javascript
+git branch js
+git checkout js
+
 
 
