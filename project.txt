@@ -1,5 +1,8 @@
+# https://www.debugandrelease.com/creating-a-simple-electron-application/
+
 npm i electron --save-dev
 touch .gitignore
+
 mdkir app
 mkdir app
 mkdir dist
@@ -8,3 +11,73 @@ mkdir app/electron
 mkdir app/src
 
 touch app/electron/main.js
+
+# Create the react application
+$ npm i react react-dom --save-dev
+$ touch app/src/index.jsx
+
+npm i webpack webpack-cli --save-dev
+touch webpack.config.js
+
+npm i babel-loader --save-dev
+
+$ cat webpack.config.js
+module.exports = {
+  entry: "./app/src/index.jsx",
+  output: {
+    path: path.resolve(__dirname, "app/dist"),
+    filename: "bundle.js"
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        include: [path.resolve(__dirname, "app/src")],
+        loader: "babel-loader",
+        resolve: {
+          extensions: [".js", ".jsx", ".json"]
+        }
+      }
+    ]
+  }
+}
+
+$ npm i @babel/core @babel/preset-env @babel/preset-react
+$ vi .babelrc
+{
+    "presets": [
+        "@babel/preset-env",
+        "@babel/preset-react"
+    ]
+}
+
+# We add a script in package.json
+  "scripts": {
+    "start": "electron .",
+    "dev": "webpack --mode development --config webpack.config.js",
+    :
+  }
+
+simple-electron-template/ $ npm run dev
+
+> SimpleTemplate@1.0.0 dev
+> webpack --mode development --config webpack.config.js
+
+asset bundle.js 1.12 MiB [emitted] (name: main)
+runtime modules 1.04 KiB 5 modules
+modules by path ./node_modules/ 1.08 MiB
+  modules by path ./node_modules/react-dom/ 1000 KiB
+    ./node_modules/react-dom/client.js 619 bytes [built] [code generated]
+    ./node_modules/react-dom/index.js 1.33 KiB [built] [code generated]
+    ./node_modules/react-dom/cjs/react-dom.development.js 1000 KiB [built] [code generated]
+  modules by path ./node_modules/react/ 85.7 KiB
+    ./node_modules/react/index.js 190 bytes [built] [code generated]
+    ./node_modules/react/cjs/react.development.js 85.5 KiB [built] [code generated]
+  modules by path ./node_modules/scheduler/ 17.3 KiB
+    ./node_modules/scheduler/index.js 198 bytes [built] [code generated]
+    ./node_modules/scheduler/cjs/scheduler.development.js 17.1 KiB [built] [code generated]
+./app/src/index.jsx 243 bytes [built] [code generated]
+webpack 5.75.0 compiled successfully in 429 ms
+simple-electron-template/ $
+
+# Our first handwritten webpack config for a react application is working !!
