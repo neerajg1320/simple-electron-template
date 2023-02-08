@@ -247,3 +247,13 @@ simple-electron-template/ $ npx cross-env NODE_ENV=development electron .
 Development mode
 
 # Our two modes are working !!
+
+# Also we add scripts to make sure that these work with ease
+  "scripts": {
+    "dev-server": "webpack serve --mode development --config ./webpack.config.dev.js",
+    "dev": "cross-env NODE_ENV=development electron .",
+    "preprod": "webpack --mode production --config ./webpack.config.prod.js",
+    "prod": "cross-env NODE_ENV=production electron ."
+  },
+
+# TBD: We will build custom targets which combine the two using on-wait and concurrently
